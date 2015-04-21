@@ -1,0 +1,10 @@
+c:\Users\Adan\documents\visual studio 2013\Projects\Contpaqi\WCFContpaq\bin\WCFContpaq.dll.config
+c:\Users\Adan\documents\visual studio 2013\Projects\Contpaqi\WCFContpaq\bin\WCFContpaq.dll
+c:\Users\Adan\documents\visual studio 2013\Projects\Contpaqi\WCFContpaq\bin\WCFContpaq.pdb
+c:\Users\Adan\documents\visual studio 2013\Projects\Contpaqi\WCFContpaq\bin\EntityFramework.dll
+c:\Users\Adan\documents\visual studio 2013\Projects\Contpaqi\WCFContpaq\bin\EntityFramework.SqlServer.dll
+c:\Users\Adan\documents\visual studio 2013\Projects\Contpaqi\WCFContpaq\bin\EntityFramework.xml
+c:\Users\Adan\documents\visual studio 2013\Projects\Contpaqi\WCFContpaq\bin\EntityFramework.SqlServer.xml
+c:\Users\Adan\documents\visual studio 2013\Projects\Contpaqi\WCFContpaq\obj\Debug\WCFContpaq.dll
+c:\Users\Adan\documents\visual studio 2013\Projects\Contpaqi\WCFContpaq\obj\Debug\WCFContpaq.pdb
+C:\Users\Adan\documents\visual studio 2013\Projects\Contpaqi\WCFContpaq\obj\Debug\WCFContpaq.csprojResolveAssemblyReference.cache

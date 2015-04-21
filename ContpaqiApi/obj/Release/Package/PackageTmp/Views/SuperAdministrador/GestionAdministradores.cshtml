@@ -1,0 +1,166 @@
+﻿@using ContpaqiApi.Helpers
+@model IEnumerable<ContpaqiApi.AdminReference.Administradores>
+
+@{
+    ViewBag.Title = "Gestión de administradores";
+    string x;
+}
+
+    <div class=" row">
+        <div class="col-md-9 font-color-blue">
+            <h4>Catálogo de administradores</h4>
+        </div>
+        @*<div class="col-md-4">*@
+            @*<section id="BuscarAdmin">*@
+                @using (Html.BeginForm("BuscarAdministrador", "SuperAdministrador", new { ReturnUrl = ViewBag.ReturnUrl },
+                    FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    //<div class="form-group">
+                        <div class="col-md-2 left-position">
+                            @Html.TextBox("valor", null, new { @class = "form-group" })
+                            <input type="submit" value="Buscar" class="btn btn-default">
+                        </div>
+                    //</div>
+                }
+            @*</section>*@
+        @*</div>*@
+    </div>
+    
+
+    @*<div class="row">
+        <div class="col-md-10">
+            <section id="BuscarAdmin">
+                @using (Html.BeginForm("BuscarAdministrador", "SuperAdministrador", new { ReturnUrl = ViewBag.ReturnUrl },
+                    FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.TextBox("valor", null, new { @class = "form-group" })
+                            <input type="submit" value="Buscar" class="btn btn-default">
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>*@
+
+    <div id="TablaAdmins">
+        <table class="table table-condensed">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Departamento)
+                </th>
+                <th></th>
+            </tr>
+            @{var myItem = "";}
+            @foreach (var item in Model)
+            {
+            
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Departamento)
+                    </td>
+                    <td>
+                        @Html.ActionLink(" ", "EditarAdministrador", new { id = item.Usuario }, new { @class = "btn btn-default glyphicon glyphicon-pencil" })
+                        @*@Html.NoEncodeActionLink("<span class='glyphicon glyphicon-pencil'></span>", 
+                                                "Editar", "EditarAdministrador", "SuperAdministrador", 
+                                                routeValues: new { id = item.Usuario }, 
+                                                htmlAttributes: new { data_modal = "" , @class = "btn btn-default" })*@
+
+                        @*@Html.ActionLink("Bloquear", null, new { id = item.Usuario, data_target = "#myModal", data_toogle = "modal", @class = "btn btn-default"}) |*@
+                        @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-ban-circle'></span>", 
+                                                "Bloquear", "Bloquear", "SuperAdministrador", 
+                                                routeValues: new { id = item.Usuario }, 
+                                                htmlAttributes: new {data_modal= "", @class = "btn btn-default"})
+
+                        @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-remove-circle'></span>", 
+                                                "Eliminar", "Eliminar", "SuperAdministrador", 
+                                                routeValues: new { id = item.Usuario }, 
+                                                htmlAttributes: new { data_modal = "", @class = "btn btn-default" })
+                        @*@Html.ActionLink("Eliminar", "Eliminar", new { id = item.Usuario})*@
+                    </td>
+                </tr>
+            
+            }
+        </table>
+    </div>
+
+
+@using (Html.BeginForm("AgregarNuevo", "SuperAdministrador", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+{
+    <div id="btnAgregar">
+        <input class="btn btn-default" type="submit" value="Agregar Administrador" />
+    </div>
+}
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" id="Contenedor">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $.ajaxSetup({ cache: false });
+        $("a[data-modal]").on("click", function (e) {
+            $(e.target).closest('.btn-group').children('.dropdown-toggle').dropdown('toggle');
+            $('#Contenedor').load(this.href, function () {
+                $('#myModal').modal({
+                    keyboard: true
+                }, 'show');
+                bindForm(this);
+            });
+            return false;
+        });
+    });
+
+    //function bindForm(dialog) {
+    //    $('form', dialog).submit(function () {
+    //        $.ajax({
+    //            url: this.action,
+    //            type: this.method,
+    //            data: $(this).serialize(),
+    //            success: function (result) {
+    //                if (result.success) {
+    //                    $('#myModal').modal('hide');
+    //                    //Refresh
+    //                    location.reload();
+    //                } else {
+    //                    $('#Contenedor').html(result);
+    //                    bindForm(dialog);
+    //                }
+    //            }
+    //        });
+    //        return false;
+    //    });
+    //    }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modalform")
+}
